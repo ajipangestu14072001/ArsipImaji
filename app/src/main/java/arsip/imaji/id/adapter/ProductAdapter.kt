@@ -13,14 +13,15 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import arsip.imaji.id.R
+import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.model.DataObject
 import arsip.imaji.id.view.DetailActivity
 import com.bumptech.glide.Glide
 
 class ProductAdapter(
     private val product: ArrayList<DataObject>,
+    var listener: FetchRecyclerViewItems
 ): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-
     class ProductViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val tvPlacePromo : TextView = itemView.findViewById(R.id.tvPlacePromo)
         val titleProductPromo : TextView = itemView.findViewById(R.id.titleProductPromo)
@@ -50,7 +51,7 @@ class ProductAdapter(
             it.context.startActivity(Intent(it.context, DetailActivity::class.java))
         }
         holder.button.setOnClickListener {
-            Toast.makeText(it.context, "Halo", Toast.LENGTH_SHORT).show()
+            listener.onItemClicked(it, currentTime)
         }
     }
 

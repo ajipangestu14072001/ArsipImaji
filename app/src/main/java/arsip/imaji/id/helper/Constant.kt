@@ -1,6 +1,7 @@
 package arsip.imaji.id.helper
 
 import arsip.imaji.id.model.Person
+import com.google.firebase.database.DatabaseReference
 
 object Constant {
     const val clientID = "148438306885-8vv8vue5p5refh1ndjci8jsgr01650qf.apps.googleusercontent.com"
@@ -44,4 +45,6 @@ object Constant {
             }
             return list
         }
+
+    var databaseReference: DatabaseReference? = null
 }

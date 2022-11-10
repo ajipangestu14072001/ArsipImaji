@@ -2,13 +2,18 @@ package arsip.imaji.id.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import arsip.imaji.id.adapter.ProductAdapter
+import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.databinding.ActivityWeddingBinding
+import arsip.imaji.id.helper.Constant
+import arsip.imaji.id.model.Cart
 import arsip.imaji.id.model.DataObject
 import com.google.firebase.database.*
 
-class WeddingActivity : AppCompatActivity() {
+class WeddingActivity : AppCompatActivity(), FetchRecyclerViewItems {
     lateinit var binding: ActivityWeddingBinding
     private lateinit var dbRef : DatabaseReference
     private lateinit var productList : ArrayList<DataObject>
@@ -17,6 +22,7 @@ class WeddingActivity : AppCompatActivity() {
         binding = ActivityWeddingBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        Constant.databaseReference = FirebaseDatabase.getInstance().getReference(EnangementActivity.Database_Path)
         setSupportActionBar(binding.toolbar)
         binding.recycler1.layoutManager = GridLayoutManager(applicationContext, 2)
         binding.recycler1.setHasFixedSize(true)
@@ -32,7 +38,7 @@ class WeddingActivity : AppCompatActivity() {
                             productList.add(product!!)
                         }
                     }
-                    binding.recycler1.adapter = ProductAdapter(productList)
+                    binding.recycler1.adapter = ProductAdapter(productList, this@WeddingActivity)
                 }
             }
 
@@ -45,5 +51,31 @@ class WeddingActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onItemClicked(view: View, product: DataObject) {
+        val key = Constant.databaseReference?.push()?.key
+        val courseRVModal = Cart(
+            key.toString(),
+            product.namaBarang,
+            product.harga,
+            product.lokasi,
+            product.pathPhoto,
+        )
+        Constant.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Constant.databaseReference?.child("List$key")?.setValue(courseRVModal)
+                Toast.makeText(
+                    this@WeddingActivity,
+                    "Hehehe Cart Berhasil ditambahkan..",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@WeddingActivity, "Waduh gagal gan..", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 }

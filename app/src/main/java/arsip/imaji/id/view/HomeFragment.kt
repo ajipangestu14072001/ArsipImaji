@@ -1,13 +1,13 @@
 package arsip.imaji.id.view
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +19,7 @@ import arsip.imaji.id.adapter.AdapterHome
 import arsip.imaji.id.adapter.SliderAdapter
 import arsip.imaji.id.databinding.FragmentHomeBinding
 import arsip.imaji.id.helper.SliderItems
+import arsip.imaji.id.model.Cart
 import arsip.imaji.id.model.DataObject
 import com.google.firebase.database.*
 import java.lang.Math.abs
@@ -27,7 +28,9 @@ class HomeFragment : Fragment() {
     var adapter: AdapterHome? = null
     private val handler = Handler()
     private lateinit var dbRef : DatabaseReference
+    private lateinit var cartRef : DatabaseReference
     private lateinit var productList : ArrayList<DataObject>
+    private lateinit var cart : ArrayList<Cart>
     private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +74,7 @@ class HomeFragment : Fragment() {
         binding.pilihan.setHasFixedSize(true)
         productList = arrayListOf()
         dbRef = FirebaseDatabase.getInstance().getReference("ArsipImaji")
+        cartRef = FirebaseDatabase.getInstance().getReference("Cart")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
@@ -95,11 +99,33 @@ class HomeFragment : Fragment() {
         binding.clyCart.setOnClickListener {
             startActivity(Intent(context, CartActivity::class.java))
         }
-
+        cart = arrayListOf()
+        getSize()
         return binding.root
     }
     private val runnable = Runnable {
         binding.viewPagerImageSlider.currentItem = binding.viewPagerImageSlider.currentItem + 1
+    }
+
+    private fun getSize(){
+        cartRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    for (i in snapshot.children){
+                        val product = i.getValue(Cart::class.java)
+                        cart.add(product!!)
+                    }
+                }
+                if (cart.size > 0)
+                    binding.cvCart.visibility = View.VISIBLE
+                binding.tvCountCart.text = cart.size.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
 }

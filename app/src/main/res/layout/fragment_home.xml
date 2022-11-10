@@ -37,6 +37,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvCart"
+                        android:visibility="gone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         app:cardBackgroundColor="#FF0000"
@@ -105,10 +106,10 @@
                         <SearchView
                             android:id="@+id/search"
                             android:layout_width="300dp"
-                            app:queryBackground="@null"
+                            android:layout_height="wrap_content"
                             android:background="@null"
                             android:queryHint="Search here..."
-                            android:layout_height="wrap_content" />
+                            app:queryBackground="@null" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -193,6 +194,7 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/pilihan"
+                            android:layout_marginBottom="70dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lainnya" />

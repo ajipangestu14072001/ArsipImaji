@@ -1,5 +1,6 @@
 package arsip.imaji.id.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -20,6 +21,7 @@ import arsip.imaji.id.R
 import arsip.imaji.id.databinding.ActivitySplashBinding
 
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     var waktu = 4000
     lateinit var binding : ActivitySplashBinding

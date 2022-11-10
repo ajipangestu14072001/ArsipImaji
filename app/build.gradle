@@ -65,4 +65,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.1'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.vipulasri:ticketview:1.1.2'
+
 }
