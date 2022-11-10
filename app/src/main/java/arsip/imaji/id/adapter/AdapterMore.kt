@@ -105,10 +105,7 @@ class AdapterMore(context: Context, items: ArrayList<DataObject>) : RecyclerView
     }
 
     override fun getItemCount(): Int {
-        return when(items.size){
-            5 -> items.size+1
-            else -> items.size
-        }
+        return if (items.size > 6) 6 else items.size
     }
 
     companion object {
