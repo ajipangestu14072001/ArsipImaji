@@ -1,6 +1,7 @@
 package arsip.imaji.id.view
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -89,6 +90,10 @@ class HomeFragment : Fragment() {
 
         binding.title.setOnClickListener {
             startActivity(Intent(context, AddActivity::class.java))
+        }
+
+        binding.clyCart.setOnClickListener {
+            startActivity(Intent(context, CartActivity::class.java))
         }
 
         return binding.root

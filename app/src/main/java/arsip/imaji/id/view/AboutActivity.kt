@@ -17,10 +17,15 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setSupportActionBar(binding.toolbar)
         binding.rvPerson.setHasFixedSize(true)
         list.addAll(Constant.listData)
         binding.rvPerson.layoutManager = LinearLayoutManager(this)
         val foodAdapter = AdapterAbout(list)
         binding.rvPerson.adapter = foodAdapter
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

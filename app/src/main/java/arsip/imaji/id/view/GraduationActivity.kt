@@ -17,6 +17,7 @@ class GraduationActivity : AppCompatActivity() {
         binding = ActivityGraduationBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setSupportActionBar(binding.toolbar)
         binding.recycler1.layoutManager = GridLayoutManager(applicationContext, 2)
         binding.recycler1.setHasFixedSize(true)
         productList = arrayListOf()
@@ -40,5 +41,9 @@ class GraduationActivity : AppCompatActivity() {
             }
 
         })
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
