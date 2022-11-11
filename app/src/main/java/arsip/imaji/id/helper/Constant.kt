@@ -14,6 +14,11 @@ object Constant {
         "Yeni Ulfah",
         "Tami Ade Sanita")
 
+    private val namaProduk = arrayOf(
+        "Es Jeruk",
+        "Es Kopi",
+        "Jus Alpukat",)
+
     private val personImages = arrayOf(
         "https://firebasestorage.googleapis.com/v0/b/arsipimaji-2b711.appspot.com/o/Aliffiyah%20Z.jpg?alt=media&token=a13d38f1-8ec1-4812-b34f-2d7424cb734c",
         "https://firebasestorage.googleapis.com/v0/b/arsipimaji-2b711.appspot.com/o/Halimatus.jpg?alt=media&token=2bf70916-b136-4fe3-8a61-7e492b7a07bf",
@@ -47,4 +52,18 @@ object Constant {
         }
 
     var databaseReference: DatabaseReference? = null
+
+    val listDataPayment: ArrayList<Payment>
+        get() {
+            val list = arrayListOf<Payment>()
+            for (position in personNames.indices) {
+                val foods = Payment()
+                foods.namaBarang = personNames[position]
+                foods.deskripsi = namaProduk[position]
+                foods.pathPhoto = personImages[position]
+                foods.lokasi = namaProduk[position]
+                list.add(foods)
+            }
+            return list
+        }
 }
