@@ -1,5 +1,6 @@
 package arsip.imaji.id.helper
 
+import arsip.imaji.id.model.Payment
 import arsip.imaji.id.model.Person
 import com.google.firebase.database.DatabaseReference
 

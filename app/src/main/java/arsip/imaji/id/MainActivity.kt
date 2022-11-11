@@ -3,9 +3,9 @@ package arsip.imaji.id
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import arsip.imaji.id.databinding.ActivityLoginBinding
 import arsip.imaji.id.databinding.ActivityMainBinding
 import arsip.imaji.id.view.FavFragment
+import arsip.imaji.id.view.HistoryPaymentFragment
 import arsip.imaji.id.view.HomeFragment
 import arsip.imaji.id.view.ProfileFragment
 
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment())
                     return@setOnItemSelectedListener
                 }
-                R.id.favorite -> {
-                    loadFragment(FavFragment())
+                R.id.historyPayment -> {
+                    loadFragment(HistoryPaymentFragment())
                     return@setOnItemSelectedListener
                 }
                 R.id.person -> {

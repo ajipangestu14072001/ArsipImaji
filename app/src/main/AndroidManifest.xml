@@ -54,6 +54,20 @@
 <!--                android:value="" />-->
 <!--        </activity>-->
         <activity
+            android:name=".view.HistoryPaymentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DetailPayment"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.AllProductActivity"
             android:exported="false">
             <meta-data
