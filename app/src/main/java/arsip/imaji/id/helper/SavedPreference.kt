@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 object SavedPreference {
-
+    var isBackFromList: Boolean = false
     const val EMAIL= "email"
     const val USERNAME="username"
 

@@ -18,6 +18,7 @@ import arsip.imaji.id.adapter.AdapterMore
 import arsip.imaji.id.adapter.AdapterHome
 import arsip.imaji.id.adapter.SliderAdapter
 import arsip.imaji.id.databinding.FragmentHomeBinding
+import arsip.imaji.id.helper.SavedPreference
 import arsip.imaji.id.helper.SliderItems
 import arsip.imaji.id.model.Cart
 import arsip.imaji.id.model.DataObject
@@ -107,13 +108,24 @@ class HomeFragment : Fragment() {
         binding.viewPagerImageSlider.currentItem = binding.viewPagerImageSlider.currentItem + 1
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (SavedPreference.isBackFromList){
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
+        }
+    }
+
     private fun getSize(){
+        val user = SavedPreference.getUsername(requireContext())
         cartRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (i in snapshot.children){
-                        val product = i.getValue(Cart::class.java)
-                        cart.add(product!!)
+                        val type = i.child("user").value.toString()
+                        if (type == user){
+                            val product = i.getValue(Cart::class.java)
+                            cart.add(product!!)
+                        }
                     }
                 }
                 if (cart.size > 0)

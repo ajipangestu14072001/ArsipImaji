@@ -1,21 +1,18 @@
 package arsip.imaji.id.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import arsip.imaji.id.R
 import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.model.DataObject
-import arsip.imaji.id.view.DetailActivity
+import arsip.imaji.id.view.BuyActivity
 import com.bumptech.glide.Glide
 
 class ProductAdapter(
@@ -48,7 +45,7 @@ class ProductAdapter(
             .load(currentTime.pathPhoto)
             .into(holder.image)
         holder.clyProductCariPromo.setOnClickListener{
-            it.context.startActivity(Intent(it.context, DetailActivity::class.java))
+            it.context.startActivity(Intent(it.context, BuyActivity::class.java))
         }
         holder.button.setOnClickListener {
             listener.onItemClicked(it, currentTime)

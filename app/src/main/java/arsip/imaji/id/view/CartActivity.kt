@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import arsip.imaji.id.adapter.AdapterCart
 import arsip.imaji.id.databinding.ActivityCartBinding
+import arsip.imaji.id.helper.SavedPreference
 import arsip.imaji.id.model.Cart
 import com.google.firebase.database.*
 
@@ -18,6 +19,7 @@ class CartActivity : AppCompatActivity(), AdapterCart.HistoryAdapterCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         val view = binding.root
+        val user = SavedPreference.getUsername(applicationContext)
         setContentView(view)
         setSupportActionBar(binding.toolbar)
         binding.rvCart.layoutManager = LinearLayoutManager(applicationContext)
@@ -28,8 +30,12 @@ class CartActivity : AppCompatActivity(), AdapterCart.HistoryAdapterCallback {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (i in snapshot.children){
-                        val product = i.getValue(Cart::class.java)
-                        cart.add(product!!)
+                        val type = i.child("user").value.toString()
+                        if (type == user){
+                            val product = i.getValue(Cart::class.java)
+                            cart.add(product!!)
+                        }
+
                     }
                     binding.rvCart.adapter = AdapterCart(cart, this@CartActivity)
                 }
@@ -44,6 +50,11 @@ class CartActivity : AppCompatActivity(), AdapterCart.HistoryAdapterCallback {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        SavedPreference.isBackFromList = true
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -9,6 +9,8 @@ import arsip.imaji.id.adapter.ProductAdapter
 import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.databinding.ActivityEnangementBinding
 import arsip.imaji.id.helper.Constant
+import arsip.imaji.id.helper.SavedPreference
+import arsip.imaji.id.model.Buy
 import arsip.imaji.id.model.Cart
 import arsip.imaji.id.model.DataObject
 import com.google.firebase.database.*
@@ -53,16 +55,17 @@ class EnangementActivity : AppCompatActivity(), FetchRecyclerViewItems {
 
     override fun onItemClicked(view: View, product: DataObject) {
         val key = Constant.databaseReference?.push()?.key
-        val courseRVModal = Cart(
+        val cart = Cart(
             key.toString(),
             product.namaBarang,
             product.harga,
             product.lokasi,
             product.pathPhoto,
+            SavedPreference.getUsername(applicationContext)
         )
         Constant.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Constant.databaseReference?.child("List$key")?.setValue(courseRVModal)
+                Constant.databaseReference?.child("List$key")?.setValue(cart)
                 Toast.makeText(
                     this@EnangementActivity,
                     "Hehehe Cart Berhasil ditambahkan..",
@@ -76,6 +79,7 @@ class EnangementActivity : AppCompatActivity(), FetchRecyclerViewItems {
             }
         })
     }
+
     companion object {
         const val Database_Path = "Cart"
     }
