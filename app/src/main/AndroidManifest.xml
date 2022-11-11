@@ -40,6 +40,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".view.DetailPaymentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+<!--        <activity-->
+<!--            android:name=".view.DetailPaymentActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+        <activity
             android:name=".view.AllProductActivity"
             android:exported="false">
             <meta-data
