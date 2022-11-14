@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import arsip.imaji.id.R
 import arsip.imaji.id.model.DataObject
 import arsip.imaji.id.view.AllProductActivity
+import arsip.imaji.id.view.DetailActivity
+import arsip.imaji.id.view.DetailPaymentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
@@ -43,12 +46,14 @@ class AdapterMore(context: Context, items: ArrayList<DataObject>) : RecyclerView
         var firstName: TextView
         var lastName: TextView
         var age: TextView
+        var cardItem: CardView
 
         init {
                 image1 = itemView.findViewById(R.id.imgProduct) as ImageView
                 firstName = itemView.findViewById(R.id.firstName) as TextView
                 lastName = itemView.findViewById(R.id.lastName) as TextView
                 age = itemView.findViewById(R.id.age) as TextView
+                cardItem = itemView.findViewById(R.id.cardItem) as CardView
 
         }
 
@@ -122,6 +127,9 @@ class AdapterMore(context: Context, items: ArrayList<DataObject>) : RecyclerView
             if (holder is ViewHolderItem) {
                 val data = items[position]
                 holder.bind(data)
+                holder.cardItem.setOnClickListener {
+                    context?.startActivity(Intent(context, DetailPaymentActivity::class.java))
+                }
             }
         }
     }

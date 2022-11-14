@@ -6,4 +6,5 @@ import arsip.imaji.id.model.DataObject
 
 interface FetchRecyclerViewItems {
     fun onItemClicked(view: View, product : DataObject)
+    fun onIntent(product : DataObject)
 }

@@ -13,6 +13,7 @@ import arsip.imaji.id.R
 import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.model.DataObject
 import arsip.imaji.id.view.BuyActivity
+import arsip.imaji.id.view.DetailPaymentActivity
 import com.bumptech.glide.Glide
 
 class ProductAdapter(
@@ -45,7 +46,7 @@ class ProductAdapter(
             .load(currentTime.pathPhoto)
             .into(holder.image)
         holder.clyProductCariPromo.setOnClickListener{
-            it.context.startActivity(Intent(it.context, BuyActivity::class.java))
+            listener.onIntent(currentTime)
         }
         holder.button.setOnClickListener {
             listener.onItemClicked(it, currentTime)

@@ -1,21 +1,16 @@
 package arsip.imaji.id.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import arsip.imaji.id.R
 import arsip.imaji.id.model.DataObject
-import arsip.imaji.id.model.Payment
-import arsip.imaji.id.model.Person
-import arsip.imaji.id.view.DetailPaymentActivity
 import com.bumptech.glide.Glide
 
-class AdapterPayment(private val listPayment: ArrayList<Payment>) : RecyclerView.Adapter<AdapterPayment.ListViewHolder>() {
+class AdapterPayment(private val listPayment: ArrayList<DataObject>) : RecyclerView.Adapter<AdapterPayment.ListViewHolder>() {
      class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tvTopProduct)
         var tvDetail: TextView = itemView.findViewById(R.id.tvTitleProduct)

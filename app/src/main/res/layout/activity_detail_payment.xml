@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,11 +8,12 @@
     tools:context=".view.DetailPaymentActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        app:elevation="0dp"
-    >
+        app:elevation="0dp">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -40,7 +41,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
+        android:layout_below="@id/appBar"
         android:layout_height="70dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -51,8 +54,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            >
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,13 +71,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="260dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
                 android:text="RP. 300000"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:id="@+id/amount"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -83,83 +86,169 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:layout_below="@id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="255dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:id="@+id/card2"
         android:layout_marginEnd="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPricePayment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_payment" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clyProductCariPromo"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/img_payment"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/ic_launcher"
+                            app:layout_constraintBaseline_toTopOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            tools:layout_editor_absoluteY="4dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lokasi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginTop="5dp"
+                                android:letterSpacing="-0.02"
+                                android:text="Solaria"
+                                android:textColor="#b1b1b1"
+                                android:textSize="10sp"
+                                android:textStyle="normal"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivProductCaripromo" />
+
+                            <TextView
+                                android:id="@+id/tvTitleProduct"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginTop="4dp"
+                                android:ellipsize="end"
+                                android:letterSpacing="-0.02"
+                                android:maxLines="2"
+                                android:minLines="2"
+                                android:text="1 Main Menu + 1 Orange Juice"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvPlacePromo" />
+
+                            <TextView
+                                android:id="@+id/tvLocation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginTop="4dp"
+                                android:ellipsize="end"
+                                android:letterSpacing="-0.02"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="Mall Kelapa Gading"
+                                android:textColor="#b1b1b1"
+                                android:textSize="10sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/tvPricePayment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginTop="4dp"
+                                android:letterSpacing="-0.02"
+                                android:text="Rp 50.000"
+                                android:textColor="#ff6103"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                app:layout_constraintLeft_toRightOf="@+id/ivPricePromo"
+                                app:layout_constraintTop_toBottomOf="@+id/lyLocationPromo" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/card2"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
 
-        android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Detail Pembelian"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="255dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Jumlah Item"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Deskripsi Product"/>
 
 
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc"
+            android:text="Ini deskripsi"
+            />
 
-
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <Button
-        android:layout_width="350dp"
+        android:id="@+id/pay"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        app:backgroundTint="#D2691E"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Pay Now" />
 
 
 
-</LinearLayout>
+</RelativeLayout>

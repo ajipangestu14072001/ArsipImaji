@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="#fffae3"
             android:gravity="center"
-            android:text="Bayar Sebelum 04 Nov 2021, 15:45 WIB"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="12sp" />
 

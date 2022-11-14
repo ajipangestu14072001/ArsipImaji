@@ -1,5 +1,6 @@
 package arsip.imaji.id.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -82,6 +83,12 @@ class AllProductActivity : AppCompatActivity(), FetchRecyclerViewItems {
                     .show()
             }
         })
+    }
+
+    override fun onIntent(product: DataObject) {
+        val intent = Intent(this, DetailPaymentActivity::class.java)
+        intent.putExtra("product", product);
+        startActivity(intent)
     }
 
 }
