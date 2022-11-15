@@ -131,7 +131,7 @@
                             tools:layout_editor_absoluteY="4dp" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="250dp"
                             android:layout_marginStart="10dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -159,8 +159,8 @@
                                 android:layout_marginTop="4dp"
                                 android:ellipsize="end"
                                 android:letterSpacing="-0.02"
-                                android:maxLines="2"
-                                android:minLines="2"
+                                android:maxLines="1"
+                                android:minLines="1"
                                 android:text="1 Main Menu + 1 Orange Juice"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"

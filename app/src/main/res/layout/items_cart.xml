@@ -142,7 +142,7 @@
             android:layout_alignParentRight="true">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvAddToCart"
+                android:id="@+id/cardAddToCart"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"

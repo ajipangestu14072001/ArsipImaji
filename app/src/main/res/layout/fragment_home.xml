@@ -114,18 +114,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardMain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintTop_toBottomOf="@+id/relativeL">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPagerImageSlider"
@@ -133,10 +121,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:clipToPadding="false"
-                    android:paddingStart="40dp"
-                    android:paddingEnd="40dp" />
-
-            </androidx.cardview.widget.CardView>
+                    android:paddingStart="30dp"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeL"
+                    android:paddingEnd="30dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -50,6 +50,7 @@ class AdapterHistoryPayment(private val listHistory: ArrayList<Buy>) : RecyclerV
 
             override fun onFinish() {
                 status = "Payment Success"
+                holder.tvExpiredPayment.text = status
                 holder.icRoundedCheckStatus.visibility = View.VISIBLE
             }
         }

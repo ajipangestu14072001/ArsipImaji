@@ -1,6 +1,7 @@
 package arsip.imaji.id.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -65,6 +66,12 @@ class CartActivity : AppCompatActivity(), AdapterCart.HistoryAdapterCallback {
         overridePendingTransition(0, 0)
         startActivity(intent)
         overridePendingTransition(0, 0)
+    }
+
+    override fun getData(cart: Cart) {
+        val intent = Intent(this, DetailPaymentActivity::class.java)
+        intent.putExtra("cart", cart);
+        startActivity(intent)
     }
 
 }

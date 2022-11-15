@@ -40,7 +40,7 @@ class SliderAdapter(sliderItems: MutableList<SliderItems>, viewPager2: ViewPager
         fun setImage(sliderItems: SliderItems) {
             sliderItems.image?.let { Glide.with(itemView.context)
                 .asBitmap()
-                .load("https://cdn.wpbeginner.com/wp-content/uploads/2019/04/bestwordpressslider.png")
+                .load(sliderItems.image)
                 .into(imageView) }
         }
 

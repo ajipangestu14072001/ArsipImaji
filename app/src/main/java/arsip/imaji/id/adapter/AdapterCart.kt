@@ -3,8 +3,10 @@ package arsip.imaji.id.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import arsip.imaji.id.R
 import arsip.imaji.id.model.Cart
@@ -20,6 +22,7 @@ class AdapterCart(
         var price: TextView = itemView.findViewById(R.id.price)
         var ivImgProductCart: ImageView = itemView.findViewById(R.id.ivImgProductCart)
         var ivDeleteProduct: ImageView = itemView.findViewById(R.id.ivDeleteProduct)
+        var cvAddToCart: CardView = itemView.findViewById(R.id.cardAddToCart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -42,9 +45,13 @@ class AdapterCart(
         holder.ivDeleteProduct.setOnClickListener {
             cart.id?.let { it1 -> adapterCallback.onDeleteCart(it1) }
         }
+        holder.cvAddToCart.setOnClickListener {
+           adapterCallback.getData(cart)
+        }
     }
     interface HistoryAdapterCallback {
         fun onDeleteCart(id: String)
+        fun getData(cart : Cart)
     }
 
 }

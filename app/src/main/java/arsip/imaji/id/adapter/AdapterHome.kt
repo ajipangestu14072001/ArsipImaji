@@ -42,7 +42,7 @@ class AdapterHome(var context: Context) : RecyclerView.Adapter<AdapterHome.MyAda
         if (position == 2) {
             holder.image1.setImageResource(R.drawable.ic_round_local_florist_24)
             holder.back.setBackgroundColor(Color.parseColor("#F2AF4576"))
-            holder.text.text = "Prewed"
+            holder.text.text = "Prewedding"
             holder.back.setOnClickListener {
                 context.startActivity(Intent(context, WeddingActivity::class.java))
             }

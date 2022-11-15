@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import arsip.imaji.id.R
+import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.model.DataObject
 import arsip.imaji.id.view.AllProductActivity
 import arsip.imaji.id.view.DetailActivity
@@ -21,8 +22,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.firebase.database.ValueEventListener
 
-class AdapterMore(context: Context, items: ArrayList<DataObject>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterMore(
+    context: Context,
+    items: ArrayList<DataObject>,
+    private val listener: FetchRecyclerViewItems
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<DataObject> = ArrayList()
     private var context : Context? = null
@@ -128,7 +134,7 @@ class AdapterMore(context: Context, items: ArrayList<DataObject>) : RecyclerView
                 val data = items[position]
                 holder.bind(data)
                 holder.cardItem.setOnClickListener {
-                    context?.startActivity(Intent(context, DetailPaymentActivity::class.java))
+                    listener.onIntent(data)
                 }
             }
         }

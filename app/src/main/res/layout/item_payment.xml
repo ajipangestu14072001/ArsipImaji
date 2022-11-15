@@ -15,11 +15,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clyProductCariPromo"
-            android:layout_width="360dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +82,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="4dp"
-                        android:ellipsize="end"
                         android:letterSpacing="-0.02"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -93,7 +92,7 @@
 
                     <TextView
                         android:id="@+id/tvPricePayment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="4dp"

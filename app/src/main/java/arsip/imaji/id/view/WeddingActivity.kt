@@ -67,6 +67,8 @@ class WeddingActivity : AppCompatActivity(), FetchRecyclerViewItems {
             key.toString(),
             product.namaBarang,
             product.harga,
+            product.kategori,
+            product.deskripsi,
             product.lokasi,
             product.pathPhoto,
         )

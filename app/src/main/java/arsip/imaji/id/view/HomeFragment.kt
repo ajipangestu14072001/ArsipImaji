@@ -3,20 +3,20 @@ package arsip.imaji.id.view
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import arsip.imaji.id.adapter.AdapterMore
 import arsip.imaji.id.adapter.AdapterHome
+import arsip.imaji.id.adapter.AdapterMore
 import arsip.imaji.id.adapter.SliderAdapter
+import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.databinding.FragmentHomeBinding
 import arsip.imaji.id.helper.SavedPreference
 import arsip.imaji.id.helper.SliderItems
@@ -25,7 +25,7 @@ import arsip.imaji.id.model.DataObject
 import com.google.firebase.database.*
 import java.lang.Math.abs
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), FetchRecyclerViewItems {
     var adapter: AdapterHome? = null
     private val handler = Handler()
     private lateinit var dbRef : DatabaseReference
@@ -44,10 +44,10 @@ class HomeFragment : Fragment() {
         adapter = AdapterHome(requireContext())
         binding.recyclerView.adapter = adapter
 
-        imageList.add(SliderItems("https://cdn.wpbeginner.com/wp-content/uploads/2019/04/bestwordpressslider.png"))
-        imageList.add(SliderItems("https://cdn.wpbeginner.com/wp-content/uploads/2019/04/bestwordpressslider.png"))
-        imageList.add(SliderItems("https://cdn.wpbeginner.com/wp-content/uploads/2019/04/bestwordpressslider.png"))
-        imageList.add(SliderItems("https://cdn.wpbeginner.com/wp-content/uploads/2019/04/bestwordpressslider.png"))
+        imageList.add(SliderItems("https://thumbs.dreamstime.com/b/camera-pencil-brush-banner-pencils-brushes-photography-design-art-concept-website-72389892.jpg"))
+        imageList.add(SliderItems("https://thumbs.dreamstime.com/b/camera-pencil-brush-banner-pencils-brushes-photography-design-art-concept-website-72389892.jpg"))
+        imageList.add(SliderItems("https://thumbs.dreamstime.com/b/camera-pencil-brush-banner-pencils-brushes-photography-design-art-concept-website-72389892.jpg"))
+        imageList.add(SliderItems("https://thumbs.dreamstime.com/b/camera-pencil-brush-banner-pencils-brushes-photography-design-art-concept-website-72389892.jpg"))
 
         val imageAdapter = SliderAdapter(imageList, binding.viewPagerImageSlider)
         binding.viewPagerImageSlider.adapter = imageAdapter
@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
                         val product = i.getValue(DataObject::class.java)
                         productList.add(product!!)
                     }
-                    binding.pilihan.adapter = AdapterMore(requireContext(),productList)
+                    binding.pilihan.adapter = AdapterMore(requireContext(), productList, this@HomeFragment)
                 }
             }
 
@@ -138,6 +138,19 @@ class HomeFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onItemClicked(view: View, product: DataObject) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onIntent(product: DataObject) {
+//        val intent = Intent(this, DetailPaymentActivity::class.java)
+//        intent.putExtra("product", product);
+//        startActivity(intent)
+        val intent = Intent(activity, DetailPaymentActivity::class.java)
+        intent.putExtra("product", product);
+        startActivity(intent)
     }
 
 }
