@@ -79,7 +79,8 @@ class BuyActivity : AppCompatActivity(), FetchRecyclerViewItems {
                 binding.phone.text.toString(),
                 binding.tanggal.text.toString(),
                 binding.note.text.toString(),
-                pathPhoto
+                pathPhoto,
+                "Payment Pending"
             )
             Constant.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -89,6 +90,8 @@ class BuyActivity : AppCompatActivity(), FetchRecyclerViewItems {
                         "Hehehe Transaksi Berhasi Dibuat..",
                         Toast.LENGTH_SHORT
                     ).show()
+                    finish()
+                    startActivity(getIntent())
                 }
 
                 override fun onCancelled(error: DatabaseError) {

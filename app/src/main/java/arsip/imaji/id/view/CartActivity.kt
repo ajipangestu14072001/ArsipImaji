@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import arsip.imaji.id.MainActivity
 import arsip.imaji.id.adapter.AdapterCart
 import arsip.imaji.id.databinding.ActivityCartBinding
 import arsip.imaji.id.helper.SavedPreference
@@ -62,10 +63,9 @@ class CartActivity : AppCompatActivity(), AdapterCart.HistoryAdapterCallback {
     override fun onDeleteCart(id: String) {
         Toast.makeText(applicationContext, id, Toast.LENGTH_SHORT).show()
         dbRef.child("List$id").removeValue()
+        startActivity(Intent(applicationContext, MainActivity::class.java))
+        overridePendingTransition(0, 0)
         finish()
-        overridePendingTransition(0, 0)
-        startActivity(intent)
-        overridePendingTransition(0, 0)
     }
 
     override fun getData(cart: Cart) {

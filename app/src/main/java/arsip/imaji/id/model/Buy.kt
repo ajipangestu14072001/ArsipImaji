@@ -12,5 +12,6 @@ data class Buy(
     val phone: String? = null,
     val tanggalDibutuhkan: String? = null,
     val note: String? = null,
-    val pathPhoto: String? = null
+    val pathPhoto: String? = null,
+    val statusPayment: String? = null
 )

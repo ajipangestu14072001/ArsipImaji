@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import arsip.imaji.id.MainActivity
 import arsip.imaji.id.adapter.ProductAdapter
 import arsip.imaji.id.callback.FetchRecyclerViewItems
 import arsip.imaji.id.databinding.ActivityEnangementBinding

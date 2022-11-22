@@ -71,6 +71,7 @@ class WeddingActivity : AppCompatActivity(), FetchRecyclerViewItems {
             product.deskripsi,
             product.lokasi,
             product.pathPhoto,
+            SavedPreference.getUsername(applicationContext)
         )
         Constant.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

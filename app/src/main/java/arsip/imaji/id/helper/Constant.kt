@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseReference
 
 object Constant {
     const val clientID = "148438306885-8vv8vue5p5refh1ndjci8jsgr01650qf.apps.googleusercontent.com"
+    const val status = "Payment Success"
     private val personNames = arrayOf(
         "Aliffiyah Z.",
         "Halimatus",

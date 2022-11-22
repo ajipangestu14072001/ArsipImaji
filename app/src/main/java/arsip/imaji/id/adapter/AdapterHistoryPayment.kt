@@ -1,5 +1,6 @@
 package arsip.imaji.id.adapter
 
+import android.annotation.SuppressLint
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import arsip.imaji.id.R
+import arsip.imaji.id.helper.Constant
+import arsip.imaji.id.helper.SavedPreference.checkStatus
 import arsip.imaji.id.model.Buy
 import arsip.imaji.id.model.Person
 import com.bumptech.glide.Glide
@@ -32,8 +35,8 @@ class AdapterHistoryPayment(private val listHistory: ArrayList<Buy>) : RecyclerV
         return listHistory.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        var status = "Payment Pending"
         val historyPayment = listHistory[position]
         Glide.with(holder.itemView.context)
             .load(historyPayment.pathPhoto)
@@ -41,7 +44,12 @@ class AdapterHistoryPayment(private val listHistory: ArrayList<Buy>) : RecyclerV
         holder.tvBookingTimeCariPromo.text = historyPayment.tanggalDibutuhkan
         holder.tvPacketName.text = historyPayment.namaBarang
         holder.tvMoreProduct.text = historyPayment.lokasi
-        holder.tvExpiredPayment.text = status
+        if (checkStatus){
+            holder.tvExpiredPayment.text = "Payment Pending"
+        }else{
+            holder.tvExpiredPayment.text = Constant.status
+            holder.icRoundedCheckStatus.visibility = View.VISIBLE
+        }
         holder.price.text = historyPayment.jumlahHarga.toString()
         val timer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -49,8 +57,8 @@ class AdapterHistoryPayment(private val listHistory: ArrayList<Buy>) : RecyclerV
             }
 
             override fun onFinish() {
-                status = "Payment Success"
-                holder.tvExpiredPayment.text = status
+                checkStatus = false
+                holder.tvExpiredPayment.text = Constant.status
                 holder.icRoundedCheckStatus.visibility = View.VISIBLE
             }
         }
